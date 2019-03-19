@@ -738,7 +738,8 @@ void x264_quant_init( x264_t *h, int cpu, x264_quant_function_t *pf )
 #if HAVE_ALTIVEC
     if( cpu&X264_CPU_ALTIVEC )
     {
-        pf->quant_2x2_dc = x264_quant_2x2_dc_altivec;
+//      FIXME x264_quant_2x2_dc_altivec is broken for yuv422 encode
+//        pf->quant_2x2_dc = x264_quant_2x2_dc_altivec;
         pf->quant_4x4_dc = x264_quant_4x4_dc_altivec;
         pf->quant_4x4 = x264_quant_4x4_altivec;
         pf->quant_4x4x4 = x264_quant_4x4x4_altivec;
