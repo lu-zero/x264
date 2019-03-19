@@ -369,6 +369,7 @@ int x264_quant_4x4_dc_altivec( int16_t dct[16], int mf, int bias )
     vec_st(temp1v, (idx0), dct);                                    \
 }
 
+// FIXME x264_quant_2x2_dc_altivec is broken for yuv422 encode
 int x264_quant_2x2_dc_altivec( int16_t dct[4], int mf, int bias )
 {
     LOAD_ZERO;
