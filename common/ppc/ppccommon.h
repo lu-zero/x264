@@ -93,7 +93,7 @@ typedef union {
 /***********************************************************************
  * Null vector
  **********************************************************************/
-#define LOAD_ZERO const vec_u8_t zerov = vec_splat_u8( 0 )
+#define LOAD_ZERO const vec_u8_t zerov = vec_xor( zerov, zerov )
 
 #define zero_u8v  (vec_u8_t)  zerov
 #define zero_s8v  (vec_s8_t)  zerov
