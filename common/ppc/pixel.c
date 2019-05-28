@@ -564,8 +564,7 @@ static int pixel_satd_16x16_altivec( uint8_t *pix1, intptr_t i_pix1,
                                        temp4v, temp5v, temp6v, temp7v ) );
 
     satdv = vec_sums( satdv, zero_s32v );
-    satdv = vec_splat( satdv, 3 );
-    vec_ste( satdv, 0, &i_satd );
+    i_satd =  vec_extract(satdv,3) ;
 
     return i_satd >> 1;
 }
