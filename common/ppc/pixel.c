@@ -137,7 +137,6 @@ static ALWAYS_INLINE vec_s32_t add_abs_4( vec_s16_t a, vec_s16_t b,
 static int pixel_satd_4x4_altivec( uint8_t *pix1, intptr_t i_pix1,
                                    uint8_t *pix2, intptr_t i_pix2 )
 {
-    ALIGNED_16( int i_satd );
 
     PREP_DIFF;
     vec_s16_t diff0v, diff1v, diff2v, diff3v;
@@ -160,10 +159,7 @@ static int pixel_satd_4x4_altivec( uint8_t *pix1, intptr_t i_pix1,
                  temp0v, temp1v, temp2v, temp3v );
 
     satdv = add_abs_4( temp0v, temp1v, temp2v, temp3v );
-
-    satdv = vec_sum2s( satdv, zero_s32v );
-    satdv = vec_splat( satdv, 1 );
-    vec_ste( satdv, 0, &i_satd );
+    int i_satd =  vec_extract(satdv,0) + vec_extract(satdv,1);
 
     return i_satd >> 1;
 }
@@ -206,10 +202,7 @@ static int pixel_satd_4x8_altivec( uint8_t *pix1, intptr_t i_pix1,
                  temp0v, temp1v, temp2v, temp3v );
 
     satdv = vec_add( satdv, add_abs_4( temp0v, temp1v, temp2v, temp3v ) );
-
-    satdv = vec_sum2s( satdv, zero_s32v );
-    satdv = vec_splat( satdv, 1 );
-    vec_ste( satdv, 0, &i_satd );
+    i_satd =  vec_extract(satdv,0) + vec_extract(satdv,1);
 
     return i_satd >> 1;
 }
@@ -280,9 +273,7 @@ static int pixel_satd_8x4_altivec( uint8_t *pix1, intptr_t i_pix1,
     satdv = add_abs_8( temp0v, temp1v, temp2v, temp3v,
                        temp4v, temp5v, temp6v, temp7v );
 
-    satdv = vec_sum2s( satdv, zero_s32v );
-    satdv = vec_splat( satdv, 1 );
-    vec_ste( satdv, 0, &i_satd );
+    i_satd =  vec_extract(satdv,0) + vec_extract(satdv,1);
 
     return i_satd >> 1;
 }
@@ -330,8 +321,7 @@ static int pixel_satd_8x8_altivec( uint8_t *pix1, intptr_t i_pix1,
                        temp4v, temp5v, temp6v, temp7v );
 
     satdv = vec_sums( satdv, zero_s32v );
-    satdv = vec_splat( satdv, 3 );
-    vec_ste( satdv, 0, &i_satd );
+    i_satd =  vec_extract(satdv,3) ;
 
     return i_satd >> 1;
 }
@@ -400,8 +390,7 @@ static int pixel_satd_8x16_altivec( uint8_t *pix1, intptr_t i_pix1,
                                        temp4v, temp5v, temp6v, temp7v ) );
 
     satdv = vec_sums( satdv, zero_s32v );
-    satdv = vec_splat( satdv, 3 );
-    vec_ste( satdv, 0, &i_satd );
+    i_satd =  vec_extract(satdv,3) ;
 
     return i_satd >> 1;
 }
