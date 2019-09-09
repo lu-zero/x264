@@ -380,6 +380,7 @@ static int open_file( char *psz_filename, hnd_t *p_handle, video_info_t *info, c
     {
         if( h->pts )
             free( h->pts );
+        free(h);
         fclose( tcfile_in );
         return -1;
     }

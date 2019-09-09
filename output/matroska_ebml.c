@@ -308,6 +308,7 @@ mk_writer *mk_create_writer( const char *filename )
     if( !w->fp )
     {
         mk_destroy_contexts( w );
+        free( w->root );
         free( w );
         return NULL;
     }

@@ -270,6 +270,7 @@ static int open_file( char *psz_filename, hnd_t *p_handle, video_info_t *info, c
     if( h->func.avs_get_error )
     {
         const char *error = h->func.avs_get_error( h->env );
+        free(h);
         FAIL_IF_ERROR( error, "%s\n", error );
     }
     float avs_version = get_avs_version( h );
