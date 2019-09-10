@@ -970,10 +970,6 @@ static int name( uint8_t *fenc,                                                 
                  uint8_t *pix2, uint8_t *pix3,                                        \
                  intptr_t i_stride, int scores[4] )                                   \
 {                                                                                     \
-    ALIGNED_16( int sum0 );                                                           \
-    ALIGNED_16( int sum1 );                                                           \
-    ALIGNED_16( int sum2 );                                                           \
-                                                                                      \
     LOAD_ZERO;                                                                        \
     vec_u8_t fencv, pix0v, pix1v, pix2v, pix3v;                                       \
     vec_s32_t sum0v, sum1v, sum2v, sum3v;                                             \
