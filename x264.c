@@ -1911,7 +1911,7 @@ do\
         retval = -1;\
         goto fail;\
     }\
-} while( 0 )
+} while( 0 );
 
 static int encode( x264_param_t *param, cli_opt_t *opt )
 {
